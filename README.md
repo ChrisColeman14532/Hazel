@@ -1,2 +1,2 @@
 # Hazel
-The Cherno Game Engine
+Hazel Game Engine
