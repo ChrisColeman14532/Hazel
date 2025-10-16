@@ -51,7 +51,6 @@ workspace "Hazel"
             cppdialect "C++17"
             staticruntime "On"
             systemversion "latest"
-            buildoptions "/utf-8"
 
             defines
             {
@@ -66,14 +65,17 @@ workspace "Hazel"
 
         filter "configurations:Debug"
             defines "HZ_DEBUG"
+            buildoptions "/utf-8 /MDd"
             symbols "On"
 
         filter "configurations:Release"
             defines "HZ_RELEASE"
+            buildoptions "/utf-8 /MD"
             optimize "On"
 
         filter "configurations:Dist"
             defines "HZ_DIST"
+            buildoptions "/utf-8 /MD"
             optimize "On"
   
     project "Sandbox"
@@ -105,7 +107,6 @@ workspace "Hazel"
             cppdialect "C++17"
             staticruntime "On"
             systemversion "latest"
-            buildoptions "/utf-8"
 
             defines
             {
@@ -114,12 +115,15 @@ workspace "Hazel"
 
         filter "configurations:Debug"
             defines "HZ_DEBUG"
+            buildoptions "/utf-8 /MDd"
             symbols "On"
 
         filter "configurations:Release"
             defines "HZ_RELEASE"
+            buildoptions "/utf-8 /MD"
             optimize "On"
 
         filter "configurations:Dist"
             defines "HZ_DIST"
+            buildoptions "/utf-8 /MD"
             optimize "On"    
