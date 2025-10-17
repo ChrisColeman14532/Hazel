@@ -1,5 +1,7 @@
 #include <Hazel.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Hazel::Layer
 {
 public:
@@ -10,12 +12,20 @@ public:
 
 	void OnUpdate() override
 	{
-		HZ_INFO("ExampleLayer::Update");
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_TAB))
+			HZ_TRACE("Tab key is pressed (polling)");
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Hello World");
+		ImGui::Text("This is some useful text.");
+		ImGui::End();
 	}
 
 	void OnEvent(Hazel::Event& event) override
 	{
-		HZ_TRACE("{0}", event.ToString());
+
 	}
 };
 
@@ -25,7 +35,6 @@ public:
 		Sandbox()
 		{
 			PushLayer(new ExampleLayer());
-			PushOverlay(new Hazel::ImGuiLayer());
 		}
 
 		~Sandbox()
