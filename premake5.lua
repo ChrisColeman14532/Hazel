@@ -1,6 +1,7 @@
 workspace "Hazel"
 	architecture "x64"
     startproject "Sandbox"
+    buildoptions "/utf-8"
 
     configurations
 	{
@@ -27,10 +28,11 @@ workspace "Hazel"
 
     project "Hazel"
         location "Hazel"
-        kind "SharedLib"
+        kind "StaticLib"
         language "C++"
-        staticruntime "off"
-
+        cppdialect "C++17"
+        staticruntime "on"
+        
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -43,6 +45,11 @@ workspace "Hazel"
             "%{prj.name}/src/**.cpp",
             "%{prj.name}/vendor/glm/glm/**.hpp",
             "%{prj.name}/vendor/glm/glm/**.inl"
+        }
+
+        defines
+        {
+            "_CRT_SECURE_NO_WARNINGS"
         }
 
         includedirs
@@ -64,9 +71,7 @@ workspace "Hazel"
 	    }
 
         filter "system:windows"
-            cppdialect "C++17"
             systemversion "latest"
-            buildoptions "/utf-8"
 
             defines
             {
@@ -75,31 +80,27 @@ workspace "Hazel"
                 "GLFW_INCLUDE_NONE"
             }
 
-            postbuildcommands
-            {
-                ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-            }
-
         filter "configurations:Debug"
             defines "HZ_DEBUG"
             runtime "Debug"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "HZ_RELEASE"
             runtime "Release"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "HZ_DIST"
             runtime "Release"
-            optimize "On"
+            optimize "on"
   
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
-        staticruntime "off"
+        cppdialect "C++17"
+        staticruntime "on"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -115,19 +116,19 @@ workspace "Hazel"
             "Hazel/vendor/spdlog/include",
             "Hazel/src",
             "Hazel/vendor",
+            "%{IncludeDir.GLFW}",
             "%{IncludeDir.glm}"
         }
 
         links
         {
-            "Hazel"
+            "Hazel",
+            "GLFW"
         }
 
         filter "system:windows"
-            cppdialect "C++17"
             systemversion "latest"
-            buildoptions "/utf-8"
-
+ 
             defines
             {
                 "HZ_PLATFORM_WINDOWS"
@@ -136,14 +137,14 @@ workspace "Hazel"
         filter "configurations:Debug"
             defines "HZ_DEBUG"
             runtime "Debug"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "HZ_RELEASE"
             runtime "Release"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "HZ_DIST"
             runtime "Release"
-            optimize "On"    
+            optimize "on"    
