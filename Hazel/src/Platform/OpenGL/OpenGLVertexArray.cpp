@@ -3,8 +3,8 @@
 
 #include <glad/glad.h>
 
-namespace Hazel {
-
+namespace Hazel
+{
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
 	{
 		switch (type)
@@ -77,5 +77,4 @@ namespace Hazel {
 
 		m_IndexBuffer = indexBuffer;
 	}
-
 }
