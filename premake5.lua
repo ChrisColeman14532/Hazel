@@ -1,5 +1,5 @@
 workspace "Hazel"
-	architecture "x64"
+    architecture "x64"
     startproject "Sandbox"
     buildoptions "/utf-8"
 
@@ -18,8 +18,8 @@ workspace "Hazel"
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
     -- Include directories relative to root folder (solution directory)
-	IncludeDir={}
-	IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+    IncludeDir={}
+     IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
     IncludeDir["Glad"] = "Hazel/vendor/Glad/include"
     IncludeDir["ImGui"] = "Hazel/vendor/imgui"
     IncludeDir["glm"] = "Hazel/vendor/glm"
@@ -73,10 +73,10 @@ workspace "Hazel"
 
         links
 	    {
-		    "GLFW",
+            "GLFW",
             "Glad",
             "ImGui",
-		    "opengl32.lib"
+            "opengl32.lib"
 	    }
 
         filter "system:windows"
@@ -84,7 +84,6 @@ workspace "Hazel"
 
             defines
             {
-                "HZ_PLATFORM_WINDOWS",
                 "HZ_BUILD_DLL",
                 "GLFW_INCLUDE_NONE"
             }
@@ -138,11 +137,6 @@ workspace "Hazel"
         filter "system:windows"
             systemversion "latest"
  
-            defines
-            {
-                "HZ_PLATFORM_WINDOWS"
-            }
-
         filter "configurations:Debug"
             defines "HZ_DEBUG"
             runtime "Debug"

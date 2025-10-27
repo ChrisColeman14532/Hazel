@@ -25,9 +25,3 @@
 #include "Hazel/Renderer/VertexArray.h"
 
 #include "Hazel/Renderer/OrthographicCamera.h"
-// ___________________________________
-
-
-// ---Entry Point---------------------
-#include "Hazel/Core/EntryPoint.h"
-// ___________________________________
