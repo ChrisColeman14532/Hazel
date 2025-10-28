@@ -6,6 +6,8 @@
 #include "Hazel/Core/Layer.h"
 #include "Hazel/Core/Log.h"
 
+#include "Hazel/Debug/Instrumentor.h"
+
 #include "Hazel/Core/Timestep.h"
 
 #include "Hazel/Core/Input.h"
